@@ -9,7 +9,7 @@ class LinkedList{
 
             Node(int data, Node* p){
                 this->data = data;
-                this->next = nullptr;
+                this->next = p;
             }
         };
 
