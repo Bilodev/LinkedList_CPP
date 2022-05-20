@@ -21,9 +21,7 @@ class LinkedList{
         LinkedList(){}
 
         //costruttore con val iniziali
-        LinkedList(std::initializer_list<int> lists){
-            Node* temp = HEAD;
-            
+        LinkedList(std::initializer_list<int> lists){            
             for (auto element:lists){
                 push(element);
             }
@@ -78,7 +76,7 @@ class LinkedList{
         }
         
         //ADD AN ELEMENT AT THE FIRST INDEX AND SHIFT ALL THE OTHERS
-        void add(int data){
+        void add_first(int data){
             Node* temp = HEAD;
             Node* newNode = new Node(data,nullptr);
             HEAD = newNode;
@@ -101,11 +99,31 @@ class LinkedList{
         }
 
         //REMOVE THE ELEMENT AT THE FIRST INDEX
-        void remove(){
+        void remove_first(){
             Node* temp = HEAD;
             HEAD = temp->next;
             delete[] temp;
             size--;
+        }
+
+        void delete_node(int index){
+            if(index == 0){ remove_first(); return;}
+            else if (index == size-1){ pop(); return;}
+            
+            Node* temp = HEAD;
+            Node* temp1 = temp->next;
+
+            for (size_t i = 0; i < index-1; i++)
+            {
+                temp = temp->next;
+                temp1 = temp->next;
+            }
+            Node* del = temp1;
+            temp1 = temp1->next;
+            temp->next = temp1;
+            delete del;
+            
+            
         }
 
 
@@ -115,7 +133,7 @@ class LinkedList{
             if(index > size){ is_accessible(index) ;return;}
             
             else if(index == 0){
-                add(data);
+                add_first(data);
                 size++;
                 return;
             }
@@ -198,9 +216,6 @@ class LinkedList{
             }
             return temp->data;
         }
-
-        
-
 
 
 };
