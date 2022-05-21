@@ -20,7 +20,7 @@ class LinkedList{
     public:
         LinkedList(){}
 
-        //costruttore con val iniziali
+        
         LinkedList(std::initializer_list<int> lists){            
             for (auto element:lists){
                 push(element);
