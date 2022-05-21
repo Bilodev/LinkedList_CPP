@@ -1,5 +1,34 @@
 #include <iostream>
 
+/*
+display() ->  displays the linkedlist
+
+is_accessible(int index, std::string operation) -> Return true if the index is acessible or throws an exception if the index is unavailable
+
+push(T data) -> Push an element into the list
+
+add_first(T data) -> add an element at the beginning of the list
+
+pop() -> Pop the last element
+
+remove_first() -> what do you think it does?
+
+delete_node(int index) -> Delete the (index)th node
+
+
+insert(T data, int index) -> Insert an element into the list at the (index)th index and shift all the next ones
+
+set(T data, int index) -> Substitutes the element at the index passed as an argument (index) with the new data (data) 
+
+
+kill() -> delete the List and print a  string passed as an argument (optional)
+
+
+*/
+
+
+
+
 template <class T>
 class LinkedList
 {
@@ -29,7 +58,6 @@ private:
 public:
     LinkedList() {}
 
-    // costruttore con val iniziali
     LinkedList(std::initializer_list<T> lists)
     {
         for (auto element : lists)
@@ -51,7 +79,7 @@ public:
         std::cout << "[" << i << "]: " << temp->data << '\n';
     }
 
-    bool is_accessible(int index, std::string operation)
+    bool is_accessible(int index, std::string operation = "")
     {
         if (index < 0 || index >= size)
         {
@@ -63,7 +91,6 @@ public:
         return true;
     }
 
-    // PUSH AN ELEMENT INTO THE LIST
     void push(T data)
     {
         Node *newNode = new Node(data, nullptr);
@@ -85,7 +112,6 @@ public:
         size++;
     }
 
-    // ADD AN ELEMENT AT THE FIRST INDEX AND SHIFT ALL THE OTHERS
     void add_first(T data)
     {
         Node *temp = HEAD;
@@ -95,7 +121,6 @@ public:
         size++;
     }
 
-    // POP THE LAST ELEMENT
     void pop()
     {
         Node *temp = HEAD;
@@ -110,7 +135,6 @@ public:
         size--;
     }
 
-    // REMOVE THE ELEMENT AT THE FIRST INDEX
     void remove_first()
     {
         Node *temp = HEAD;
@@ -148,7 +172,6 @@ public:
         delete del;
     }
 
-    // ADD AN ELEMENT AT THE INDEX  POSITION AND SHIFT ALL THE OTHERS
     void insert(T data, int index)
     {
         if (index == 0)
@@ -180,7 +203,6 @@ public:
         size++;
     }
 
-    // Substitutes the element at the index passed as an argument (index) with the new data (data)
     void set(T data, int index)
     {
         is_accessible(index, "Set");
@@ -262,9 +284,13 @@ public:
         }
         delete HEAD;
     }
+    
 
 
-    // TODO sort - reverse
+    
+
+    // TODO reverse
 };
+
 
 
