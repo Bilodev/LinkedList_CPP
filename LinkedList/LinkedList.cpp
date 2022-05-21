@@ -3,22 +3,22 @@
 /*
 display() ->  displays the linkedlist
 
-is_accessible(int index, std::string operation) -> Return true if the index is acessible or throws an exception if the index is unavailable
+is_accessible( index, (string) operation) -> Return true if the index is acessible or throws an exception if the index is unavailable
 
-push(T data) -> Push an element into the list
+push(data) -> Push an element into the list
 
-add_first(T data) -> add an element at the beginning of the list
+add_first(data) -> add an element at the beginning of the list
 
 pop() -> Pop the last element
 
 remove_first() -> what do you think it does?
 
-delete_node(int index) -> Delete the (index)th node
+delete_node(index) -> Delete the (index)th node
 
 
-insert(T data, int index) -> Insert an element into the list at the (index)th index and shift all the next ones
+insert(data,index) -> Insert an element into the list at the (index)th index and shift all the next ones
 
-set(T data, int index) -> Substitutes the element at the index passed as an argument (index) with the new data (data) 
+set(data,index) -> Substitutes the element at the index passed as an argument (index) with the new data (data) 
 
 
 kill() -> delete the List and print a  string passed as an argument (optional)
