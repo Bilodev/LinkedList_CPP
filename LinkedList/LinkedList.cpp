@@ -3,7 +3,7 @@
 /*
 display() ->  displays the linkedlist
 
-is_accessible( index, (string) operation) -> Return true if the index is acessible or throws an exception if the index is unavailable
+is_accessible(index, operation) -> Return true if the index is acessible or throws an exception if the index is unavailable
 
 push(data) -> Push an element into the list
 
@@ -16,14 +16,30 @@ remove_first() -> what do you think it does?
 delete_node(index) -> Delete the (index)th node
 
 
-insert(data,index) -> Insert an element into the list at the (index)th index and shift all the next ones
+insert_node(data, index) -> Insert a node into the list at the (index)th index and shift all the next ones
 
-set(data,index) -> Substitutes the element at the index passed as an argument (index) with the new data (data) 
+set(data, index) -> Substitutes the element at the index passed as an argument (index) with the new data (data) 
 
 
 kill() -> delete the List and print a  string passed as an argument (optional)
 
+length() -> return the size of the list
 
+opreator[] -> return the element at the index inside the [] ;
+
+sort() -> sorts the list by increasing order
+
+sort( comparing function) -> sorts the list with your ordering criteria
+
+is_sorted() -> return true only if the list is ordered in increasing or decreasing order 
+
+is_empty() -> return true if the list is empty
+
+reverse() -> reverse the list
+
+dbg() -> print all the nodes addresses, datas, and next pointers
+
+dbg(index) -> print the address, data, and next pointer of the node at indexth position
 */
 
 
@@ -58,9 +74,9 @@ private:
 public:
     LinkedList() {}
 
-    LinkedList(std::initializer_list<T> lists)
+    LinkedList(std::initializer_list<T> list)
     {
-        for (auto element : lists)
+        for (auto element : list)
         {
             push(element);
         }
@@ -70,21 +86,19 @@ public:
     {
         Node *temp = HEAD;
         int i = 0;
-        while (temp->next != nullptr)
+        while (temp != nullptr)
         {
             std::cout << "[" << i << "]: " << temp->data << '\n';
             temp = temp->next; // dereference of the pointer to the struct
             i++;
         }
-        std::cout << "[" << i << "]: " << temp->data << '\n';
     }
 
     bool is_accessible(int index, std::string operation = "")
     {
         if (index < 0 || index >= size)
         {
-            std::cout << "Index " << index << " Not Accessible " << '\n'
-                      << operation << ": ";
+            std::cout << "Index " << index << " Not Accessible " << '\n' << operation << ": ";
             throw std::invalid_argument("Index out of bound \n");
             return false;
         }
@@ -131,7 +145,7 @@ public:
             temp = temp->next;
         }
         temp1->next = nullptr;
-        delete[] temp;
+        delete temp;
         size--;
     }
 
@@ -139,7 +153,7 @@ public:
     {
         Node *temp = HEAD;
         HEAD = temp->next;
-        delete[] temp;
+        delete temp;
         size--;
     }
 
@@ -172,7 +186,7 @@ public:
         delete del;
     }
 
-    void insert(T data, int index)
+    void insert_node(T data, int index)
     {
         if (index == 0)
         {
@@ -221,9 +235,8 @@ public:
         return size;
     }
 
-    
 
-    int operator[](int index)
+    T operator[](int index)
     {
         Node *temp = HEAD;
         for (size_t i = 0; i < index; i++)
@@ -233,13 +246,10 @@ public:
         return temp->data;
     }
 
-    bool is_empty()
-    {
-        return (size == 0) ? true : false;
-    }
+
 
     void sort()
-    {
+    {        
         for (int i = 0; i < size; i++)
         {
             Node *temp = HEAD;
@@ -256,41 +266,110 @@ public:
         }
     }
 
+    void sort(bool (*comp)(T,T))
+    {        
+        for (int i = 0; i < size; i++)
+        {
+            Node *temp = HEAD;
+            Node *temp1 = temp->next;
+            for (int j = 0; j < size - 1; j++)
+            {
+                if (comp(temp->data, temp1->data))
+                {
+                    swap(temp1->data, temp->data);
+                }
+                temp = temp->next;
+                temp1 = temp->next;
+            }
+        }
+    }
+    
+
     bool is_sorted(){
         Node *temp = HEAD;
         Node *temp1 = temp->next;
+        bool sortedIn = true;
+        bool sortedDec = true;
         for (size_t i = 0; i < size-1; i++)
         {
-            if (temp1->data > temp->data)
+            if (temp1->data > temp->data) 
             {
                 temp1 = temp1->next;
                 temp = temp->next;
             }else{
-                return false;
+                sortedIn = false;
+                break;
             }   
         }
-        return true;
+
+
         
+        if(!sortedIn){
+            temp = HEAD;
+            temp1 = temp->next;
+            for (size_t i = 0; i < size-1; i++)
+            {
+                if (temp->data > temp1->data) 
+                {
+                    temp1 = temp1->next;
+                    temp = temp->next;
+                }else{
+                    sortedDec = false;
+                    break;
+                }   
+            }
+        }
+        
+        return sortedIn+sortedDec;
+    }
+
+    bool is_empty()
+    {
+        return (size == 0) ? true : false;
     }
 
     void kill(std::string s = "")
     {
         std::cout << s;
         Node *temp = HEAD;
+        Node *temp1;
+
 
         for (size_t i = 0; i < size; i++)
         {
+            temp1 = temp;
             temp = temp->next;
+            delete temp1;
         }
         delete HEAD;
     }
+
+    void dbg(){
+        Node *temp = HEAD;
+        int i = 0;
+        std::cout << "Lenght: " << length() << '\n';
+        std::cout << "Head Pointer: " << HEAD->next << '\n';
+        while (temp != nullptr)
+        {
+            std::cout << "Node "<< i << ": " << "Address: " << &temp->data << " Data: " << temp->data << " Pointer: " << temp->next << '\n';
+            temp = temp->next;
+            i++;
+        }
+    }
+    void dbg(int index){
+        is_accessible(index);
+        
+        Node *temp = HEAD;
+        int i;
+        for (i = 0; i < index-1; i++)
+        {
+            temp = temp->next;
+        }
+        std::cout << "Node "<< i << ": " << "Address: " << &temp->data << " Data: " << temp->data << " Pointer: " << temp->next << '\n';
+    }
     
-
-
     
 
     // TODO reverse
 };
-
-
 
