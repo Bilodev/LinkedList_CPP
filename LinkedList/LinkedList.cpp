@@ -1,45 +1,45 @@
 #include <iostream>
 
 /*
-display() ->  displays the linkedlist
-
-is_accessible(index, operation) -> Return true if the index is acessible or throws an exception if the index is unavailable
-
-push(data) -> Push an element into the list
-
-add_first(data) -> add an element at the beginning of the list
-
-pop() -> Pop the last element
-
-remove_first() -> what do you think it does?
-
-delete_node(index) -> Delete the (index)th node
-
-
-insert_node(data, index) -> Insert a node into the list at the (index)th index and shift all the next ones
-
-set(data, index) -> Substitutes the element at the index passed as an argument (index) with the new data (data) 
-
-
-kill() -> delete the List and print a  string passed as an argument (optional)
-
-length() -> return the size of the list
-
-opreator[] -> return the element at the index inside the [] ;
-
-sort() -> sorts the list by increasing order
-
-sort( comparing function) -> sorts the list with your ordering criteria
-
-is_sorted() -> return true only if the list is ordered in increasing or decreasing order 
-
-is_empty() -> return true if the list is empty
-
-reverse() -> reverse the list
-
-dbg() -> print all the nodes addresses, datas, and next pointers
-
-dbg(index) -> print the address, data, and next pointer of the node at indexth position
+* METHOD LIST
+* 
+* display() ->  displays the linkedlist
+* 
+* is_accessible(index, operation) -> Return true if the index is acessible or throws an exception if the index is unavailable
+* 
+* push(data) -> Push an element into the list
+* 
+* add_first(data) -> add an element at the beginning of the list
+* 
+* pop() -> Pop the last element
+* 
+* remove_first() -> what do you think it does?
+* 
+* delete_node(index) -> Delete the (index)th node
+* 
+* insert_node(data, index) -> Insert a node into the list at the (index)th index and shift all the next ones
+* 
+* set(data, index) -> Substitutes the element at the index passed as an argument (index) with the new data (data) 
+* 
+* kill() -> delete the List and print a  string passed as an argument (optional)
+* 
+* length() -> return the size of the list
+* 
+* opreator[] -> return the element at the index inside the [] ;
+* 
+* sort() -> sorts the list by increasing order
+* 
+* sort( comparing function) -> sorts the list with your ordering criteria
+* 
+* is_sorted() -> return true only if the list is ordered in increasing or decreasing order 
+* 
+* is_empty() -> return true if the list is empty
+* 
+* reverse() -> reverse the list
+* 
+* dbg() -> print all the nodes addresses, datas, and next pointers
+* 
+* dbg(index) -> print the address, data, and next pointer of the node at indexth position
 */
 
 
