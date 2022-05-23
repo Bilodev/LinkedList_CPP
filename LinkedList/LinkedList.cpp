@@ -21,21 +21,21 @@
 * 
 * set(data, index) -> Substitutes the element at the index passed as an argument (index) with the new data (data) 
 * 
-* kill() -> delete the List and print a  string passed as an argument (optional)
-* 
 * length() -> return the size of the list
 * 
 * opreator[] -> return the element at the index inside the [] ;
 * 
 * sort() -> sorts the list by increasing order
 * 
-* sort( comparing function) -> sorts the list with your ordering criteria
+* sort(comparing function) -> sorts the list with your ordering criteria
 * 
 * is_sorted() -> return true only if the list is ordered in increasing or decreasing order 
 * 
 * is_empty() -> return true if the list is empty
 * 
 * reverse() -> reverse the list
+*
+* kill() -> delete the List and print a  string passed as an argument (optional)
 * 
 * dbg() -> print all the nodes addresses, datas, and next pointers
 * 
@@ -334,7 +334,6 @@ public:
         Node *temp = HEAD;
         Node *temp1;
 
-
         for (size_t i = 0; i < size; i++)
         {
             temp1 = temp;
@@ -346,7 +345,7 @@ public:
 
     void dbg(){
         Node *temp = HEAD;
-        int i = 0;
+        int i = 1;
         std::cout << "Lenght: " << length() << '\n';
         std::cout << "Head Pointer: " << HEAD->next << '\n';
         while (temp != nullptr)
@@ -361,15 +360,26 @@ public:
         
         Node *temp = HEAD;
         int i;
-        for (i = 0; i < index-1; i++)
+        for (i = 1; i < index-1; i++)
         {
             temp = temp->next;
         }
         std::cout << "Node "<< i << ": " << "Address: " << &temp->data << " Data: " << temp->data << " Pointer: " << temp->next << '\n';
     }
-    
-    
 
-    // TODO reverse
+    void reverse(){
+        Node *current = HEAD, *prev = nullptr, *next;
+        while(current != NULL){
+            next = current->next;
+            current->next = prev;
+            prev = current;
+            current = next;
+        }
+        HEAD = prev;
+    }
+
+    
 };
+
+
 
