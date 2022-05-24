@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <stack>
 /*
 * METHOD LIST
 * 
@@ -378,8 +378,28 @@ public:
         HEAD = prev;
     }
 
+    void reverse_(){
+        std::stack<Node*> stack;
+        Node* temp = HEAD;
+        while (temp != NULL)
+        {
+            stack.push(temp);
+            temp = temp->next;
+            std::cout << stack.top() << '\n';
+        }
+        temp = stack.top();
+        HEAD = temp; 
+        stack.pop();    //pop the head from the stack
+        while (!stack.empty())
+        {
+            temp->next = stack.top(); //last node next = to stack  top
+            stack.pop();
+            temp = temp->next;
+        }
+        temp->next = NULL;
+        
+    }
+
     
 };
-
-
 
