@@ -137,6 +137,13 @@ public:
 
     void pop()
     {
+        if(size == 1){
+                delete HEAD->next;
+                HEAD = nullptr;
+                size--;
+                return;
+        }
+        
         Node *temp = HEAD;
         Node *temp1;
         while (temp->next != nullptr)
@@ -325,7 +332,7 @@ public:
 
     bool is_empty()
     {
-        return (size == 0) ? true : false;
+        return !size;
     }
 
     void kill(std::string s = "")
@@ -402,4 +409,6 @@ public:
 
     
 };
+
+
 
